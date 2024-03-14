@@ -16,7 +16,7 @@ You can find the model checkpoints on Kaggle
 
 
 ## 对话演示：
-![](http://chinvision.top/wp-content/uploads/2024/03/动画.gif)
+![](https://raw.githubusercontent.com/ChinVision/gemma_pytorch_chatBots/main/chats.gif)
 
 #### 运行对话脚本
 
