@@ -18,10 +18,9 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from typing import Any, List, Optional, Sequence, Tuple, Union
-
+import time
 from gemma import config as gemma_config
 from gemma import tokenizer
-
 
 class Sampler(nn.Module):
 
@@ -553,14 +552,18 @@ class GemmaForCausalLM(nn.Module):
                 eos_index = trimmed_output.index(self.tokenizer.eos_id)
                 trimmed_output = trimmed_output[:eos_index]
             results.append(self.tokenizer.decode(trimmed_output))
+            #print(self.tokenizer.decode(trimmed_output))
 
-        # If a string was provided as input, return a string as output.
+            #time.sleep(1)
+            # If a string was provided as input, return a string as output.
         return results[0] if is_str_prompt else results
 
     def load_weights(self, model_path: str):
         self.load_state_dict(
             torch.load(
+                # 需要pytorch比较新的版本
                 model_path, mmap=True, weights_only=True,
+                # model_path, weights_only=True,
             )['model_state_dict'],
             strict=False,
         )
